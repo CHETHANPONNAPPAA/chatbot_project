@@ -1,0 +1,14 @@
+{
+  "intents": [
+    {
+      "tag": "ml",
+      "patterns": ["What is ML", "Explain machine learning"],
+      "responses": ["Machine Learning allows systems to learn from data."]
+    },
+    {
+      "tag": "sorting",
+      "patterns": ["What is sorting"],
+      "responses": ["Sorting arranges data in order."]
+    }
+  ]
+}
