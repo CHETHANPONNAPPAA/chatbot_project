@@ -9,12 +9,6 @@ function send() {
 
   document.getElementById("msg").value = "";
 
-  // Typing animation
-  let typing = document.createElement("div");
-  typing.className = "message bot";
-  typing.innerText = "Typing...";
-  chatbox.appendChild(typing);
-
   chatbox.scrollTop = chatbox.scrollHeight;
 
   fetch("https://chatbot-project-htzx.onrender.com/chat", {
@@ -24,16 +18,7 @@ function send() {
   })
   .then(res => res.json())
   .then(data => {
-    typing.remove();
-
     chatbox.innerHTML += `<div class="message bot">${data.response}</div>`;
     chatbox.scrollTop = chatbox.scrollHeight;
   });
 }
-
-// Enter key support
-document.getElementById("msg").addEventListener("keypress", function(e) {
-  if (e.key === "Enter") {
-    send();
-  }
-});
