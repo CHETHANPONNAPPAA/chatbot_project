@@ -1,12 +1,9 @@
-function predict(){
-fetch("http://127.0.0.1:5001/predict",{
+function send(){
+fetch("https://chatbot.onrender.com/chat",{
 method:"POST",
 headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-Age:parseInt(age.value),
-Gender:gender.value==="Male"?1:0
-})
+body:JSON.stringify({message:msg.value})
 })
 .then(r=>r.json())
-.then(d=>result.innerText=d.result);
+.then(d=>res.innerText=d.response);
 }
