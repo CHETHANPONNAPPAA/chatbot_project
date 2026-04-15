@@ -1,26 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>AI Chatbot</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>AI Chat</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Glass Container */
+.container {
+    width: 350px;
+    height: 550px;
+    backdrop-filter: blur(15px);
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    padding: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Chat Area */
+.chatbox {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+/* Messages */
+.message {
+    max-width: 70%;
+    padding: 10px 14px;
+    margin: 8px 0;
+    border-radius: 15px;
+    color: white;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.user {
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.bot {
+    background: rgba(255,255,255,0.15);
+}
+
+/* Input Area */
+.input-area {
+    display: flex;
+    padding: 10px;
+    background: rgba(255,255,255,0.05);
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+button {
+    margin-left: 10px;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff6a00, #ee0979);
+    color: white;
+    cursor: pointer;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+</style>
 </head>
+
 <body>
 
-<div class="chat-container">
+<div class="container">
+    <div class="header">✨ AI Chat</div>
 
-  <div class="chat-header">
-    🤖 AI Chatbot
-  </div>
+    <div class="chatbox" id="chatbox">
+        <div class="message bot">Hello 👋 How can I help you today?</div>
+    </div>
 
-  <div id="chatbox"></div>
-
-  <div class="input-area">
-    <input id="msg" placeholder="Type your message..." />
-    <button onclick="send()">Send</button>
-  </div>
-
+    <div class="input-area">
+        <input type="text" id="msg" placeholder="Type a message...">
+        <button onclick="send()">➤</button>
+    </div>
 </div>
 
-<script src="script.js"></script>
+<script>
+function send() {
+    let msg = document.getElementById("msg").value;
+    if (!msg) return;
+
+    let chatbox = document.getElementById("chatbox");
+
+    // User message
+    chatbox.innerHTML += `<div class="message user">${msg}</div>`;
+
+    // Bot reply (dummy)
+    setTimeout(() => {
+        chatbox.innerHTML += `<div class="message bot">🤖 Thinking...</div>`;
+        chatbox.scrollTop = chatbox.scrollHeight;
+    }, 500);
+
+    document.getElementById("msg").value = "";
+    chatbox.scrollTop = chatbox.scrollHeight;
+}
+</script>
+
 </body>
 </html>
