@@ -176,3 +176,20 @@ button:hover {
   background: #555;
   border-radius: 10px;
 }
+.message img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.message {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.message span {
+  word-wrap: break-word;
+}
+.chat-box {
+  overflow-x: hidden;
+}
