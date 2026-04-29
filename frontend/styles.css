@@ -11,6 +11,8 @@ body {
   background-size: 400% 400%;
   animation: gradientBG 12s ease infinite;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Background animation */
@@ -20,91 +22,55 @@ body {
   100% {background-position: 0% 50%;}
 }
 
-/* Layout */
-.app {
-  display: flex;
-  width: 100%;
-}
-
-/* Sidebar */
-.sidebar {
-  width: 240px;
-  background: rgba(15, 23, 42, 0.9);
+/* Container */
+.container {
+  width: 350px;
+  height: 550px;
   backdrop-filter: blur(15px);
-  color: white;
-  padding: 20px;
-}
-
-.sidebar h2 {
-  margin-bottom: 20px;
-  color: #60a5fa;
-}
-
-.sidebar button {
-  padding: 10px;
-  border: none;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  color: white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.sidebar button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 10px #7c3aed;
-}
-
-/* Chat */
-.chat-container {
-  flex: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  backdrop-filter: blur(20px);
+  overflow: hidden;
 }
 
 /* Header */
-.chat-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 20px;
+.header {
+  padding: 15px;
   color: white;
+  font-size: 20px;
+  font-weight: bold;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.status {
-  color: #22c55e;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% {opacity: 0.5;}
-  50% {opacity: 1;}
-  100% {opacity: 0.5;}
 }
 
 /* Chat box */
 .chat-box {
   flex: 1;
-  padding: 20px;
+  padding: 15px;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-/* Messages */
+/* Scrollbar */
+.chat-box::-webkit-scrollbar {
+  width: 5px;
+}
+.chat-box::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+/* Message wrapper */
 .message {
   max-width: 70%;
-  padding: 10px 14px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.5;
-  animation: fadeInUp 0.3s ease;
-
   display: flex;
   align-items: flex-end;
   gap: 10px;
+  animation: fadeInUp 0.3s ease;
 }
 
 /* Animation */
@@ -119,38 +85,58 @@ body {
   }
 }
 
-/* Bot */
+/* Avatar */
+.message img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Text bubble */
+.message span {
+  padding: 10px 12px;
+  border-radius: 12px;
+  display: block;
+  word-wrap: break-word;
+}
+
+/* Bot (left) */
 .bot {
-  background: rgba(255,255,255,0.1);
-  color: #e5e7eb;
-  backdrop-filter: blur(10px);
   align-self: flex-start;
 }
 
-/* User */
+.bot span {
+  background: rgba(255,255,255,0.1);
+  color: #e5e7eb;
+}
+
+/* User (right) */
 .user {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  color: white;
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
   align-self: flex-end;
   flex-direction: row-reverse;
 }
 
-/* Input */
+.user span {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  color: white;
+}
+
+/* Input area */
 .input-area {
   display: flex;
-  padding: 15px;
+  padding: 10px;
   border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 input {
   flex: 1;
-  padding: 12px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 20px;
   border: none;
+  outline: none;
   background: rgba(255,255,255,0.1);
   color: white;
-  outline: none;
 }
 
 input::placeholder {
@@ -160,10 +146,10 @@ input::placeholder {
 /* Button */
 button {
   margin-left: 10px;
-  padding: 12px 15px;
+  padding: 10px 15px;
   border: none;
-  border-radius: 8px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6a00, #ee0979);
   color: white;
   cursor: pointer;
   transition: 0.3s;
@@ -171,38 +157,5 @@ button {
 
 button:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 15px #7c3aed;
-}
-
-/* Scroll */
-.chat-box::-webkit-scrollbar {
-  width: 5px;
-}
-.chat-box::-webkit-scrollbar-thumb {
-  background: #555;
-  border-radius: 10px;
-}
-.message img {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.message span {
-  display: block;
-  padding: 10px 12px;
-  border-radius: 10px;
-  word-wrap: break-word;
-}
-.chat-box {
-  overflow-x: hidden;
-}
-.bot span {
-  background: rgba(255,255,255,0.1);
-  color: #e5e7eb;
-}
-.user span {
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
-  color: white;
+  box-shadow: 0 0 15px #ee0979;
 }

@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const chatbox = document.getElementById("chatbox");
   const input = document.getElementById("msg");
+  const button = document.querySelector("button");
 
+  /* Send message */
   function send() {
     const msg = input.value.trim();
     if (!msg) return;
@@ -20,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         removeTyping();
-        addMessage(data.response, "bot");
+        addMessage(data.response || "No response 🤔", "bot");
       })
       .catch(() => {
         removeTyping();
@@ -28,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+  /* Add message */
   function addMessage(text, type) {
     const msgDiv = document.createElement("div");
     msgDiv.classList.add("message", type);
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     chatbox.scrollTop = chatbox.scrollHeight;
   }
 
+  /* Typing indicator */
   function showTyping() {
     const typing = document.createElement("div");
     typing.classList.add("message", "bot");
@@ -66,10 +70,12 @@ document.addEventListener("DOMContentLoaded", () => {
     if (t) t.remove();
   }
 
+  /* Enter key */
   input.addEventListener("keypress", e => {
     if (e.key === "Enter") send();
   });
 
-  // make button work
-  window.send = send;
+  /* Button click */
+  button.addEventListener("click", send);
+
 });
