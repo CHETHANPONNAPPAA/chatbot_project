@@ -16,7 +16,7 @@ sentences, labels = [], []
 
 for intent in data['intents']:
     for p in intent['patterns']:
-        sentences.append(p)
+        sentences.append(p.lower())
         labels.append(intent['tag'])
 
 vectorizer = CountVectorizer()
@@ -29,14 +29,22 @@ model.fit(X, labels)
 def home():
     return "Chatbot API Running ✅"
 
+
 @app.route('/chat', methods=['POST'])
 def chat():
-    msg = request.json['message']
-    tag = model.predict(vectorizer.transform([msg]))[0]
+    try:
+        msg = request.json['message'].lower()
+        tag = model.predict(vectorizer.transform([msg]))[0]
 
-    for intent in data['intents']:
-        if intent['tag'] == tag:
-            return jsonify({"response": random.choice(intent['responses'])})
+        for intent in data['intents']:
+            if intent['tag'] == tag:
+                return jsonify({"response": random.choice(intent['responses'])})
+
+        return jsonify({"response": "I didn't understand that 🤔"})
+
+    except Exception as e:
+        print(e)
+        return jsonify({"response": "Error occurred ❌"})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))

@@ -115,25 +115,7 @@ button {
     </div>
 </div>
 
-<script>
-function send() {
-    let msg = document.getElementById("msg").value;
-    if (!msg) return;
-
-    let chatbox = document.getElementById("chatbox");
-
-    // User message
-    chatbox.innerHTML += `<div class="message user">${msg}</div>`;
-
-    // Bot reply (dummy)
-    setTimeout(() => {
-        chatbox.innerHTML += `<div class="message bot">🤖 Thinking...</div>`;
-        chatbox.scrollTop = chatbox.scrollHeight;
-    }, 500);
-
-    document.getElementById("msg").value = "";
-    chatbox.scrollTop = chatbox.scrollHeight;
-}
+<script src="script.js">
 </script>
 
 </body>
