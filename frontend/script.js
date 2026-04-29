@@ -46,7 +46,6 @@ function addMessage(text, type) {
   chatbox.appendChild(msgDiv);
   chatbox.scrollTop = chatbox.scrollHeight;
 }
-
 /* Typing */
 function showTyping() {
   const typing = document.createElement("div");
