@@ -1,24 +1,83 @@
+const chatbox = document.getElementById("chatbox");
+const input = document.getElementById("msg");
+
+/* Send */
 function send() {
-  let msg = document.getElementById("msg").value;
+  const msg = input.value.trim();
   if (!msg) return;
 
-  let chatbox = document.getElementById("chatbox");
+  addMessage(msg, "user");
+  input.value = "";
 
-  // User message
-  chatbox.innerHTML += `<div class="message user">${msg}</div>`;
-
-  document.getElementById("msg").value = "";
-
-  chatbox.scrollTop = chatbox.scrollHeight;
+  showTyping();
 
   fetch("https://chatbot-project-htzx.onrender.com/chat", {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ message: msg })
   })
-  .then(res => res.json())
-  .then(data => {
-    chatbox.innerHTML += `<div class="message bot">${data.response}</div>`;
-    chatbox.scrollTop = chatbox.scrollHeight;
-  });
+    .then(res => res.json())
+    .then(data => {
+      removeTyping();
+      addMessage(data.response, "bot");
+    })
+    .catch(() => {
+      removeTyping();
+      addMessage("Server error ❌", "bot");
+    });
+}
+
+/* Add message */
+function addMessage(text, type) {
+  const msgDiv = document.createElement("div");
+  msgDiv.classList.add("message", type);
+
+  const img = document.createElement("img");
+  img.src = type === "user"
+    ? "https://cdn-icons-png.flaticon.com/512/847/847969.png"
+    : "https://cdn-icons-png.flaticon.com/512/4712/4712109.png";
+
+  const span = document.createElement("span");
+  span.textContent = text;
+
+  msgDiv.appendChild(img);
+  msgDiv.appendChild(span);
+
+  chatbox.appendChild(msgDiv);
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+/* Typing */
+function showTyping() {
+  const typing = document.createElement("div");
+  typing.classList.add("message", "bot");
+  typing.id = "typing";
+
+  typing.innerHTML = `
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"/>
+    <span>Typing...</span>
+  `;
+
+  chatbox.appendChild(typing);
+  chatbox.scrollTop = chatbox.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById("typing");
+  if (t) t.remove();
+}
+
+/* Enter key */
+input.addEventListener("keypress", e => {
+  if (e.key === "Enter") send();
+});
+
+/* New chat */
+function newChat() {
+  chatbox.innerHTML = `
+    <div class="message bot">
+      <img src="https://cdn-icons-png.flaticon.com/512/4712/4712109.png"/>
+      <span>New chat started 👋</span>
+    </div>
+  `;
 }

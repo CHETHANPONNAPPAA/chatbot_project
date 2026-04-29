@@ -1,14 +1,45 @@
 {
   "intents": [
-    {
-      "tag": "ml",
-      "patterns": ["What is ML", "Explain machine learning"],
-      "responses": ["Machine Learning allows systems to learn from data."]
-    },
-    {
-      "tag": "sorting",
-      "patterns": ["What is sorting"],
-      "responses": ["Sorting arranges data in order."]
-    }
+
+    { "tag": "greeting", "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening"], "responses": ["Hello! How can I help you?", "Hi there!", "Hey! Ask me anything."] },
+    { "tag": "goodbye", "patterns": ["Bye", "Goodbye", "See you", "Exit"], "responses": ["Goodbye!", "See you later!", "Have a great day!"] },
+    { "tag": "thanks", "patterns": ["Thanks", "Thank you", "Thx"], "responses": ["You're welcome!", "Happy to help!", "Anytime!"] },
+
+    { "tag": "ai", "patterns": ["What is AI", "Explain artificial intelligence"], "responses": ["AI is the simulation of human intelligence in machines."] },
+    { "tag": "ml", "patterns": ["What is ML", "Explain machine learning"], "responses": ["Machine learning allows systems to learn from data."] },
+    { "tag": "dl", "patterns": ["What is deep learning"], "responses": ["Deep learning uses neural networks with many layers."] },
+    { "tag": "nlp", "patterns": ["What is NLP"], "responses": ["NLP helps machines understand human language."] },
+    { "tag": "cv", "patterns": ["What is computer vision"], "responses": ["Computer vision enables machines to interpret images."] },
+
+    { "tag": "supervised", "patterns": ["What is supervised learning"], "responses": ["It uses labeled data to train models."] },
+    { "tag": "unsupervised", "patterns": ["What is unsupervised learning"], "responses": ["It finds patterns in unlabeled data."] },
+    { "tag": "reinforcement", "patterns": ["What is reinforcement learning"], "responses": ["Learning by rewards and penalties."] },
+
+    { "tag": "classification", "patterns": ["What is classification"], "responses": ["Predicting categories or labels."] },
+    { "tag": "regression", "patterns": ["What is regression"], "responses": ["Predicting continuous values."] },
+    { "tag": "clustering", "patterns": ["What is clustering"], "responses": ["Grouping similar data points."] },
+
+    { "tag": "overfitting", "patterns": ["What is overfitting"], "responses": ["Model performs well on training but poorly on new data."] },
+    { "tag": "underfitting", "patterns": ["What is underfitting"], "responses": ["Model fails to learn patterns properly."] },
+
+    { "tag": "accuracy", "patterns": ["What is accuracy"], "responses": ["Correct predictions divided by total predictions."] },
+    { "tag": "precision", "patterns": ["What is precision"], "responses": ["Correct positive predictions divided by predicted positives."] },
+    { "tag": "recall", "patterns": ["What is recall"], "responses": ["Correct positives divided by actual positives."] },
+    { "tag": "f1", "patterns": ["What is F1 score"], "responses": ["Harmonic mean of precision and recall."] },
+
+    { "tag": "dataset", "patterns": ["What is dataset"], "responses": ["Collection of data used for training models."] },
+    { "tag": "training_data", "patterns": ["What is training data"], "responses": ["Data used to train a model."] },
+    { "tag": "test_data", "patterns": ["What is test data"], "responses": ["Data used to evaluate a model."] },
+
+    { "tag": "feature", "patterns": ["What is feature"], "responses": ["An input variable used for prediction."] },
+    { "tag": "label", "patterns": ["What is label"], "responses": ["Output or target variable."] },
+
+    { "tag": "normalization", "patterns": ["What is normalization"], "responses": ["Scaling data to a standard range."] },
+    { "tag": "standardization", "patterns": ["What is standardization"], "responses": ["Scaling data with mean 0 and std 1."] },
+
+    { "tag": "algorithm", "patterns": ["What is algorithm"], "responses": ["Step-by-step procedure to solve a problem."] },
+    { "tag": "sorting", "patterns": ["What is sorting"], "responses": ["Arranging data in order."] },
+    { "tag": "searching", "patterns": ["What is searching"], "responses": ["Finding an element in data."] }
+
   ]
 }
