@@ -32,19 +32,27 @@ def home():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    try:
-        msg = request.json['message'].lower()
-        tag = model.predict(vectorizer.transform([msg]))[0]
+    msg = request.json['message'].lower()
 
-        for intent in data['intents']:
-            if intent['tag'] == tag:
-                return jsonify({"response": random.choice(intent['responses'])})
+    # Get probabilities
+    probs = model.predict_proba(vectorizer.transform([msg]))[0]
+    max_prob = max(probs)
 
-        return jsonify({"response": "I didn't understand that 🤔"})
+    # Confidence threshold (tune this)
+    THRESHOLD = 0.5
 
-    except Exception as e:
-        print(e)
-        return jsonify({"response": "Error occurred ❌"})
+    if max_prob < THRESHOLD:
+        return jsonify({
+            "response": "Sorry, I don't understand that 🤔. Please ask something related to AI or ML."
+        })
+
+    tag = model.classes_[probs.argmax()]
+
+    for intent in data['intents']:
+        if intent['tag'] == tag:
+            return jsonify({
+                "response": random.choice(intent['responses'])
+            })
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
