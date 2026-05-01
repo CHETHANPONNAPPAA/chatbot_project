@@ -1,45 +1,302 @@
 {
   "intents": [
 
-    { "tag": "greeting", "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good evening"], "responses": ["Hello! How can I help you?", "Hi there!", "Hey! Ask me anything."] },
-    { "tag": "goodbye", "patterns": ["Bye", "Goodbye", "See you", "Exit"], "responses": ["Goodbye!", "See you later!", "Have a great day!"] },
-    { "tag": "thanks", "patterns": ["Thanks", "Thank you", "Thx"], "responses": ["You're welcome!", "Happy to help!", "Anytime!"] },
+    {
+      "tag": "greeting",
+      "patterns": ["hi", "hello", "hey", "good morning", "good evening", "hey there"],
+      "responses": ["Hello! How can I help you?", "Hi there!", "Hey! Ask me anything."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["bye", "goodbye", "see you", "exit", "see you later"],
+      "responses": ["Goodbye!", "See you later!", "Have a great day!"]
+    },
+    {
+      "tag": "thanks",
+      "patterns": ["thanks", "thank you", "thx", "thanks a lot"],
+      "responses": ["You're welcome!", "Happy to help!", "Anytime!"]
+    },
 
-    { "tag": "ai", "patterns": ["What is AI", "Explain artificial intelligence"], "responses": ["AI is the simulation of human intelligence in machines."] },
-    { "tag": "ml", "patterns": ["What is ML", "Explain machine learning"], "responses": ["Machine learning allows systems to learn from data."] },
-    { "tag": "dl", "patterns": ["What is deep learning"], "responses": ["Deep learning uses neural networks with many layers."] },
-    { "tag": "nlp", "patterns": ["What is NLP"], "responses": ["NLP helps machines understand human language."] },
-    { "tag": "cv", "patterns": ["What is computer vision"], "responses": ["Computer vision enables machines to interpret images."] },
+    {
+      "tag": "ai",
+      "patterns": [
+        "what is ai",
+        "define ai",
+        "explain artificial intelligence",
+        "ai meaning",
+        "tell me about ai"
+      ],
+      "responses": ["AI is the simulation of human intelligence in machines."]
+    },
 
-    { "tag": "supervised", "patterns": ["What is supervised learning"], "responses": ["It uses labeled data to train models."] },
-    { "tag": "unsupervised", "patterns": ["What is unsupervised learning"], "responses": ["It finds patterns in unlabeled data."] },
-    { "tag": "reinforcement", "patterns": ["What is reinforcement learning"], "responses": ["Learning by rewards and penalties."] },
+    {
+      "tag": "ml",
+      "patterns": [
+        "what is ml",
+        "what is machine learning",
+        "define machine learning",
+        "explain ml",
+        "machine learning meaning"
+      ],
+      "responses": ["Machine learning allows systems to learn from data."]
+    },
 
-    { "tag": "classification", "patterns": ["What is classification"], "responses": ["Predicting categories or labels."] },
-    { "tag": "regression", "patterns": ["What is regression"], "responses": ["Predicting continuous values."] },
-    { "tag": "clustering", "patterns": ["What is clustering"], "responses": ["Grouping similar data points."] },
+    {
+      "tag": "dl",
+      "patterns": [
+        "what is deep learning",
+        "define deep learning",
+        "explain deep learning",
+        "deep learning meaning"
+      ],
+      "responses": ["Deep learning uses neural networks with many layers."]
+    },
 
-    { "tag": "overfitting", "patterns": ["What is overfitting"], "responses": ["Model performs well on training but poorly on new data."] },
-    { "tag": "underfitting", "patterns": ["What is underfitting"], "responses": ["Model fails to learn patterns properly."] },
+    {
+      "tag": "nlp",
+      "patterns": [
+        "what is nlp",
+        "define nlp",
+        "explain natural language processing",
+        "nlp meaning"
+      ],
+      "responses": ["NLP helps machines understand human language."]
+    },
 
-    { "tag": "accuracy", "patterns": ["What is accuracy"], "responses": ["Correct predictions divided by total predictions."] },
-    { "tag": "precision", "patterns": ["What is precision"], "responses": ["Correct positive predictions divided by predicted positives."] },
-    { "tag": "recall", "patterns": ["What is recall"], "responses": ["Correct positives divided by actual positives."] },
-    { "tag": "f1", "patterns": ["What is F1 score"], "responses": ["Harmonic mean of precision and recall."] },
+    {
+      "tag": "cv",
+      "patterns": [
+        "what is computer vision",
+        "define computer vision",
+        "explain computer vision",
+        "cv meaning"
+      ],
+      "responses": ["Computer vision enables machines to interpret images."]
+    },
 
-    { "tag": "dataset", "patterns": ["What is dataset"], "responses": ["Collection of data used for training models."] },
-    { "tag": "training_data", "patterns": ["What is training data"], "responses": ["Data used to train a model."] },
-    { "tag": "test_data", "patterns": ["What is test data"], "responses": ["Data used to evaluate a model."] },
+    {
+      "tag": "supervised",
+      "patterns": [
+        "what is supervised learning",
+        "define supervised learning",
+        "explain supervised learning"
+      ],
+      "responses": ["It uses labeled data to train models."]
+    },
 
-    { "tag": "feature", "patterns": ["What is feature"], "responses": ["An input variable used for prediction."] },
-    { "tag": "label", "patterns": ["What is label"], "responses": ["Output or target variable."] },
+    {
+      "tag": "unsupervised",
+      "patterns": [
+        "what is unsupervised learning",
+        "define unsupervised learning",
+        "explain unsupervised learning"
+      ],
+      "responses": ["It finds patterns in unlabeled data."]
+    },
 
-    { "tag": "normalization", "patterns": ["What is normalization"], "responses": ["Scaling data to a standard range."] },
-    { "tag": "standardization", "patterns": ["What is standardization"], "responses": ["Scaling data with mean 0 and std 1."] },
+    {
+      "tag": "reinforcement",
+      "patterns": [
+        "what is reinforcement learning",
+        "define reinforcement learning",
+        "explain reinforcement learning"
+      ],
+      "responses": ["Learning by rewards and penalties."]
+    },
 
-    { "tag": "algorithm", "patterns": ["What is algorithm"], "responses": ["Step-by-step procedure to solve a problem."] },
-    { "tag": "sorting", "patterns": ["What is sorting"], "responses": ["Arranging data in order."] },
-    { "tag": "searching", "patterns": ["What is searching"], "responses": ["Finding an element in data."] }
+    {
+      "tag": "classification",
+      "patterns": [
+        "what is classification",
+        "define classification",
+        "explain classification",
+        "classification meaning"
+      ],
+      "responses": ["Predicting categories or labels."]
+    },
+
+    {
+      "tag": "regression",
+      "patterns": [
+        "what is regression",
+        "define regression",
+        "explain regression",
+        "regression meaning",
+        "tell me about regression"
+      ],
+      "responses": ["Predicting continuous values."]
+    },
+
+    {
+      "tag": "clustering",
+      "patterns": [
+        "what is clustering",
+        "define clustering",
+        "explain clustering",
+        "clustering meaning"
+      ],
+      "responses": ["Grouping similar data points."]
+    },
+
+    {
+      "tag": "overfitting",
+      "patterns": [
+        "what is overfitting",
+        "define overfitting",
+        "explain overfitting"
+      ],
+      "responses": ["Model performs well on training but poorly on new data."]
+    },
+
+    {
+      "tag": "underfitting",
+      "patterns": [
+        "what is underfitting",
+        "define underfitting",
+        "explain underfitting"
+      ],
+      "responses": ["Model fails to learn patterns properly."]
+    },
+
+    {
+      "tag": "accuracy",
+      "patterns": [
+        "what is accuracy",
+        "define accuracy",
+        "explain accuracy"
+      ],
+      "responses": ["Correct predictions divided by total predictions."]
+    },
+
+    {
+      "tag": "precision",
+      "patterns": [
+        "what is precision",
+        "define precision",
+        "explain precision"
+      ],
+      "responses": ["Correct positive predictions divided by predicted positives."]
+    },
+
+    {
+      "tag": "recall",
+      "patterns": [
+        "what is recall",
+        "define recall",
+        "explain recall"
+      ],
+      "responses": ["Correct positives divided by actual positives."]
+    },
+
+    {
+      "tag": "f1",
+      "patterns": [
+        "what is f1 score",
+        "define f1 score",
+        "explain f1 score"
+      ],
+      "responses": ["Harmonic mean of precision and recall."]
+    },
+
+    {
+      "tag": "dataset",
+      "patterns": [
+        "what is dataset",
+        "define dataset",
+        "explain dataset"
+      ],
+      "responses": ["Collection of data used for training models."]
+    },
+
+    {
+      "tag": "training_data",
+      "patterns": [
+        "what is training data",
+        "define training data",
+        "explain training data"
+      ],
+      "responses": ["Data used to train a model."]
+    },
+
+    {
+      "tag": "test_data",
+      "patterns": [
+        "what is test data",
+        "define test data",
+        "explain test data"
+      ],
+      "responses": ["Data used to evaluate a model."]
+    },
+
+    {
+      "tag": "feature",
+      "patterns": [
+        "what is feature",
+        "define feature",
+        "explain feature"
+      ],
+      "responses": ["An input variable used for prediction."]
+    },
+
+    {
+      "tag": "label",
+      "patterns": [
+        "what is label",
+        "define label",
+        "explain label"
+      ],
+      "responses": ["Output or target variable."]
+    },
+
+    {
+      "tag": "normalization",
+      "patterns": [
+        "what is normalization",
+        "define normalization",
+        "explain normalization"
+      ],
+      "responses": ["Scaling data to a standard range."]
+    },
+
+    {
+      "tag": "standardization",
+      "patterns": [
+        "what is standardization",
+        "define standardization",
+        "explain standardization"
+      ],
+      "responses": ["Scaling data with mean 0 and std 1."]
+    },
+
+    {
+      "tag": "algorithm",
+      "patterns": [
+        "what is algorithm",
+        "define algorithm",
+        "explain algorithm"
+      ],
+      "responses": ["Step-by-step procedure to solve a problem."]
+    },
+
+    {
+      "tag": "sorting",
+      "patterns": [
+        "what is sorting",
+        "define sorting",
+        "explain sorting"
+      ],
+      "responses": ["Arranging data in order."]
+    },
+
+    {
+      "tag": "searching",
+      "patterns": [
+        "what is searching",
+        "define searching",
+        "explain searching"
+      ],
+      "responses": ["Finding an element in data."]
+    }
 
   ]
 }

@@ -1,8 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import json, random
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import LogisticRegression
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 import os
 
 app = Flask(__name__)
@@ -12,18 +12,17 @@ CORS(app)
 with open('intents.json') as f:
     data = json.load(f)
 
-sentences, labels = [], []
+patterns = []
+tags = []
 
 for intent in data['intents']:
     for p in intent['patterns']:
-        sentences.append(p.lower())
-        labels.append(intent['tag'])
+        patterns.append(p.lower())
+        tags.append(intent['tag'])
 
-vectorizer = CountVectorizer()
-X = vectorizer.fit_transform(sentences)
-
-model = LogisticRegression()
-model.fit(X, labels)
+# ✅ Better vectorizer
+vectorizer = TfidfVectorizer()
+X = vectorizer.fit_transform(patterns)
 
 @app.route('/')
 def home():
@@ -32,27 +31,48 @@ def home():
 
 @app.route('/chat', methods=['POST'])
 def chat():
-    msg = request.json['message'].lower()
+    msg = request.json['message'].lower().strip()
 
-    # Get probabilities
-    probs = model.predict_proba(vectorizer.transform([msg]))[0]
-    max_prob = max(probs)
+    # ✅ 1. Handle simple intents
+    simple_map = {
+        "hi": "greeting",
+        "hello": "greeting",
+        "hey": "greeting",
+        "bye": "goodbye",
+        "thanks": "thanks",
+        "thank you": "thanks"
+    }
 
-    # Confidence threshold (tune this)
-    THRESHOLD = 0.5
+    if msg in simple_map:
+        tag = simple_map[msg]
+        for intent in data['intents']:
+            if intent['tag'] == tag:
+                return jsonify({
+                    "response": random.choice(intent['responses'])
+                })
 
-    if max_prob < THRESHOLD:
+    # ✅ 2. Similarity matching (REPLACES ML MODEL)
+    msg_vec = vectorizer.transform([msg])
+    similarity = cosine_similarity(msg_vec, X)[0]
+
+    max_index = similarity.argmax()
+    max_score = similarity[max_index]
+
+    THRESHOLD = 0.4
+
+    if max_score < THRESHOLD:
         return jsonify({
-            "response": "Sorry, I don't understand that 🤔. Please ask something related to AI or ML."
+            "response": "Sorry, I don't understand that 🤔. Ask something related to AI or ML."
         })
 
-    tag = model.classes_[probs.argmax()]
+    tag = tags[max_index]
 
     for intent in data['intents']:
         if intent['tag'] == tag:
             return jsonify({
                 "response": random.choice(intent['responses'])
             })
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
