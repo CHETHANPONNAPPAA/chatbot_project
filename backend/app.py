@@ -33,7 +33,7 @@ def home():
 def chat():
     msg = request.json['message'].lower().strip()
 
-    # ✅ 1. Handle simple intents
+    # 🔹 1. Handle simple intents (greetings etc.)
     simple_map = {
         "hi": "greeting",
         "hello": "greeting",
@@ -43,36 +43,47 @@ def chat():
         "thank you": "thanks"
     }
 
-    if msg in simple_map:
-        tag = simple_map[msg]
-        for intent in data['intents']:
-            if intent['tag'] == tag:
-                return jsonify({
-                    "response": random.choice(intent['responses'])
-                })
+    for key in simple_map:
+        if key in msg:
+            tag = simple_map[key]
+            for intent in data['intents']:
+                if intent['tag'] == tag:
+                    return jsonify({
+                        "response": random.choice(intent['responses'])
+                    })
 
-    # ✅ 2. Similarity matching (REPLACES ML MODEL)
+    # 🔹 2. Similarity matching
     msg_vec = vectorizer.transform([msg])
     similarity = cosine_similarity(msg_vec, X)[0]
 
     max_index = similarity.argmax()
     max_score = similarity[max_index]
 
+    tag = tags[max_index]
+    pattern_text = patterns[max_index]
+
+    # 🔹 3. Remove common words (VERY IMPORTANT)
+    stop_words = {"what", "is", "the", "a", "an", "tell", "me", "about"}
+
+    msg_words = set(msg.split()) - stop_words
+    pattern_words = set(pattern_text.split()) - stop_words
+
+    common_words = msg_words & pattern_words
+
+    # 🔹 4. Threshold check
     THRESHOLD = 0.4
 
-    if max_score < THRESHOLD:
+    if max_score < THRESHOLD or len(common_words) == 0:
         return jsonify({
             "response": "Sorry, I don't understand that 🤔. Ask something related to AI or ML."
         })
 
-    tag = tags[max_index]
-
+    # 🔹 5. Return response
     for intent in data['intents']:
         if intent['tag'] == tag:
             return jsonify({
                 "response": random.choice(intent['responses'])
             })
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
