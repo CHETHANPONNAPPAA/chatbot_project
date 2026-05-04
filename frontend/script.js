@@ -83,3 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
   button.addEventListener("click", send);
 
 });
+function logout() {
+  localStorage.removeItem("user");
+  window.location.href = "login.html";
+}
