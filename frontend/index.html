@@ -24,7 +24,11 @@
         <button onclick="send()">➤</button>
     </div>
 </div>
-
+<script>
+if (!localStorage.getItem("user")) {
+    window.location.href = "login.html";
+}
+</script>
 <script src="script.js"></script>
 
 </body>
